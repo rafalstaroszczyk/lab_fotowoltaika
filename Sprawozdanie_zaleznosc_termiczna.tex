@@ -1,0 +1,307 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage{csquotes}
+%\usepackage[sorting=none,giveninits=true]{biblatex}
+%\addbibresource{bibliography.bib}
+\usepackage{float}
+\usepackage{graphicx}
+\graphicspath{{./}}
+%\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{xcolor}  % kolory motywu
+\usepackage{tikz}
+\usetikzlibrary{angles}
+\usetikzlibrary{quotes}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{calligraphy}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{calc}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.9}
+\pgfkeys{/pgf/number format/.cd,1000 sep={\,}}
+\pgfplotsset{major grid style={thick}}
+\pgfplotsset{minor grid style={dashed}}
+\usepackage{amsmath}  % równania
+\usepackage{amssymb}
+\usepackage{bbold}
+\usepackage{physics2}  % pochodne, macierze itp
+\usephysicsmodule{ab}
+\usephysicsmodule{diagmat}
+\usephysicsmodule{xmat}
+\usephysicsmodule{nabla.legacy}
+\usephysicsmodule{op.legacy}
+\makeatletter
+%\newcommand\vb[1]{\@ifstar\boldsymbol\mathbf{#1}}
+\newcommand\vb[1]{\@ifstar\boldsymbol\mathbf{#1}}
+\newcommand\va[1]{\@ifstar{\vec{#1}}{\vec{\mathrm{#1}}}}
+\newcommand\vu[1]{%
+	\@ifstar{\hat{\boldsymbol{#1}}}{\hat{\boldsymbol{#1}}}}
+\makeatother
+\usepackage{fixdif, derivative}  % pochodne
+\usepackage[version=4]{mhchem}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+\title{Zależność parametrów ogniwa fotowoltaicznego od temperatury}
+\author{Jędrzej Górny, Jan Kurek, Rafał Staroszczyk}
+\date{}
+
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+\newcommand{\inv}[1]{\frac{1}{#1}}
+
+\begin{document}
+	\maketitle
+	\section{Metodologia badania}
+	\section{Wyniki i wnioski}
+	Podczas badania krzywej prądowo-napięciowej ogniwa otrzymano następujące wykresy dla różnych temperatur.
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[scale only axis,
+						 width=0.8\textwidth,
+						 xlabel=$U\;\bab{\unit{\mV}}$,
+						 ylabel=$I\;\bab{\unit{\mA}}$,
+						 grid=both,
+						 xmin=0,
+						 xmax=2200,
+						 ymin=0,
+						 ymax=130,
+						 xtick distance=500,
+						 ytick distance=50,
+						 minor tick num=4,
+						 legend pos=south west]
+				\addplot [color=red  , smooth, mark=*, mark size=1.5pt] table [x=UmV, y=ImA] {temp_25_UI_sorted.txt};
+				\addplot [color=green, smooth, mark=*, mark size=1.5pt] table [x=UmV, y=ImA] {temp_40_UI_sorted.txt};
+				\addplot [color=blue , smooth, mark=*, mark size=1.5pt] table [x=UmV, y=ImA] {temp_50_UI_sorted.txt};
+				\addplot [color=black, smooth, mark=*, mark size=1.5pt] table [x=UmV, y=ImA] {temp_60_UI_sorted.txt};
+				\legend{$T=\qty{25}{\degreeCelsius}$,
+						$T=\qty{40}{\degreeCelsius}$,
+						$T=\qty{50}{\degreeCelsius}$,
+						$T=\qty{60}{\degreeCelsius}$}
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Zależność prądowo-napięciowa od temperatury}
+		\label{fig:i(u)}
+	\end{figure}
+	Z otrzymanych danych można obliczyć zależność mocy od napięcia według wzoru $P=UI$.
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[scale only axis,
+				width=0.8\textwidth,
+				xlabel=$U\;\bab{\unit{\mV}}$,
+				ylabel=$P\;\bab{\unit{\mW}}$,
+				grid=both,
+				xmin=0,
+				xmax=2200,
+				ymin=0,
+				ymax=180,
+				xtick distance=500,
+				ytick distance=50,
+				minor tick num=4,
+				legend pos=north west]
+				\addplot [color=red  , smooth, mark=*, mark size=1.5pt] table [x=UmV, y=PmW] {temp_25_PU_sorted.txt};
+				\addplot [color=green, smooth, mark=*, mark size=1.5pt] table [x=UmV, y=PmW] {temp_40_PU_sorted.txt};
+				\addplot [color=blue , smooth, mark=*, mark size=1.5pt] table [x=UmV, y=PmW] {temp_50_PU_sorted.txt};
+				\addplot [color=black, smooth, mark=*, mark size=1.5pt] table [x=UmV, y=PmW] {temp_60_PU_sorted.txt};
+				\legend{$T=\qty{25}{\degreeCelsius}$,
+					$T=\qty{40}{\degreeCelsius}$,
+					$T=\qty{50}{\degreeCelsius}$,
+					$T=\qty{60}{\degreeCelsius}$}
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Zależność krzywej mocy od temperatury}
+		\label{fig:p(u)}
+	\end{figure}
+	Z wykresu \ref{fig:p(u)} można odczytać parametry ogniwa w punkcie maksymalnej mocy:
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{
+			S[table-column-width=1.5cm]
+			S[table-column-width=1.5cm]
+			S[table-column-width=1.5cm]
+			S[table-column-width=1.5cm]
+			S[table-column-width=1.5cm]
+			S[table-column-width=1.5cm]
+			S[table-column-width=1.5cm]}
+			\toprule
+			{\makecell{Temperatura \\ $\bab{\unit{\degreeCelsius}}$}} & 
+			{\makecell{$U_{OC}$ \\ $\bab{\unit{\mV}}$}} & 
+			{\makecell{$I_{SC}$ \\ $\bab{\unit{\mA}}$}} & 
+			{\makecell{$U_{MPP}$ \\ $\bab{\unit{\mV}}$}} & 
+			{\makecell{$I_{MPP}$ \\ $\bab{\unit{\mA}}$}} & 
+			{\makecell{FF \\ $\bab{\unit{\percent}}$}} & 
+			{\makecell{$P_{MPP}$ \\ $\bab{\unit{\mW}}$}} \\
+			\midrule
+			%T   Uoc      Isc     Umpp     Impp    FF     Pmpp
+			25 & 2029.2 & 112.5 & 1581.6 & 104.9 & 73 & 165.9 \\
+			40 & 1898.3 & 116.9 & 1495.9 & 104.9 & 71 & 156.9 \\
+			50 & 1859.5 & 118.0 & 1390.7 & 108.6 & 69 & 151.0 \\
+			60 & 1770.3 & 121.6 & 1317.2 & 110.5 & 68 & 145.6 \\
+			\bottomrule
+		\end{tabular}
+		\caption{Parametry ogniwa w PMM dla różnych temperatur}
+	\end{table}
+	
+	\pagebreak
+	Wraz ze wzrostem temperatury występuje spadek napięcia układu otwartego i punktu maksymalnej mocy, współczynnika wypełnienia oraz mocy maksymalnej. Zwiększa się jednak prąd obwodu zamkniętego i punktu maksymalnej mocy. Wszystkie zależności są w przybliżeniu liniowe w badanym zakresie. 
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\begin{tikzpicture}
+				\begin{axis}[scale only axis,
+					width=0.7\textwidth,
+					xlabel=$T\;\bab{\unit{\degreeCelsius}}$,
+					ylabel=$U_{OC}\;\bab{\unit{\mV}}$,
+					grid=both,
+					xmin=15,
+					xmax=70,
+					ymin=1200,
+					ymax=2200,
+					xtick distance=20,
+					ytick distance=400,
+					minor tick num=3]
+					\addplot coordinates {
+					(25, 2029.2)
+					(40, 1898.3)
+					(50, 1859.5)
+					(60, 1770.3)};
+				\end{axis}
+			\end{tikzpicture}
+			\caption{Napięcie obwodu otwartego}
+		\end{subfigure}
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\begin{tikzpicture}
+				\begin{axis}[scale only axis,
+					width=0.7\textwidth,
+					xlabel=$T\;\bab{\unit{\degreeCelsius}}$,
+					ylabel=$U_{MPP}\;\bab{\unit{\mV}}$,
+					grid=both,
+					xmin=15,
+					xmax=70,
+					ymin=1200,
+					ymax=2200,
+					xtick distance=20,
+					ytick distance=400,
+					minor tick num=3]
+					\addplot coordinates {
+					(25, 1581.6)
+					(40, 1495.9)
+					(50, 1390.7)
+					(60, 1317.2)};
+				\end{axis}
+			\end{tikzpicture}
+			\caption{Napięcie MPP}
+		\end{subfigure}
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\begin{tikzpicture}
+				\begin{axis}[scale only axis,
+					width=0.7\textwidth,
+					xlabel=$T\;\bab{\unit{\degreeCelsius}}$,
+					ylabel=$I_{SC}\;\bab{\unit{\mA}}$,
+					grid=both,
+					xmin=15,
+					xmax=70,
+					ymin=100,
+					ymax=130,
+					xtick distance=20,
+					ytick distance=10,
+					minor tick num=3]
+					\addplot coordinates {
+						(25, 112.5)
+						(40, 116.9)
+						(50, 118.0)
+						(60, 121.6)};
+				\end{axis}
+			\end{tikzpicture}
+			\caption{Prąd obwodu zamkniętego}
+		\end{subfigure}
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\begin{tikzpicture}
+				\begin{axis}[scale only axis,
+					width=0.7\textwidth,
+					xlabel=$T\;\bab{\unit{\degreeCelsius}}$,
+					ylabel=$I_{MPP}\;\bab{\unit{\mA}}$,
+					grid=both,
+					xmin=15,
+					xmax=70,
+					ymin=100,
+					ymax=130,
+					xtick distance=20,
+					ytick distance=10,
+					minor tick num=3]
+					\addplot coordinates {
+					(25, 104.9)
+					(40, 104.9)
+					(50, 108.6)
+					(60, 110.5)};
+				\end{axis}
+			\end{tikzpicture}
+			\caption{Prąd MPP}
+		\end{subfigure}
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\begin{tikzpicture}
+				\begin{axis}[scale only axis,
+					width=0.7\textwidth,
+					xlabel=$T\;\bab{\unit{\degreeCelsius}}$,
+					ylabel=$FF\;\bab{\unit{\percent}}$,
+					grid=both,
+					xmin=15,
+					xmax=70,
+					ymin=60,
+					ymax=80,
+					xtick distance=20,
+					ytick distance=10,
+					minor tick num=4]
+					\addplot coordinates {
+					(25, 73)
+					(40, 71)
+					(50, 69)
+					(60, 68)};
+				\end{axis}
+			\end{tikzpicture}
+			\caption{Współczynnik wypełnienia}
+		\end{subfigure}
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\begin{tikzpicture}
+				\begin{axis}[scale only axis,
+					width=0.7\textwidth,
+					xlabel=$T\;\bab{\unit{\degreeCelsius}}$,
+					ylabel=$P_{MPP}\;\bab{\unit{\mW}}$,
+					grid=both,
+					xmin=15,
+					xmax=70,
+					ymin=140,
+					ymax=180,
+					xtick distance=20,
+					ytick distance=10,
+					minor tick num=4]
+					\addplot coordinates {
+					(25, 165.9)
+					(40, 156.9)
+					(50, 151.0)
+					(60, 145.6)};
+				\end{axis}
+			\end{tikzpicture}
+			\caption{Maksymalna moc}
+		\end{subfigure}
+		\caption{Zmiany parametrów z temperaturą}
+	\end{figure}
+	
+	\pagebreak
+	\section{Podsumowanie}
+\end{document}
