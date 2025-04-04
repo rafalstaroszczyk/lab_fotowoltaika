@@ -2,4 +2,8 @@
 *.log
 *.gz
 *.jpg
-
+*.xml
+*.bcf
+*.blg
+*.bbl
+*.synctex
