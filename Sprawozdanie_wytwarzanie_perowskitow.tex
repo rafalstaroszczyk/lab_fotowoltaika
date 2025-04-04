@@ -1,0 +1,67 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage{csquotes}
+%\usepackage[sorting=none,giveninits=true]{biblatex}
+%\addbibresource{bibliography.bib}
+\usepackage{float}
+\usepackage{graphicx}
+\graphicspath{{./}}
+%\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{xcolor}  % kolory motywu
+\usepackage{tikz}
+\usetikzlibrary{angles}
+\usetikzlibrary{quotes}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{calligraphy}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{calc}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.9}
+\pgfkeys{/pgf/number format/.cd,1000 sep={\,}}
+\pgfplotsset{major grid style={thick}}
+\pgfplotsset{minor grid style={dashed}}
+\usepackage{amsmath}  % równania
+\usepackage{amssymb}
+\usepackage{bbold}
+\usepackage{physics2}  % pochodne, macierze itp
+\usephysicsmodule{ab}
+\usephysicsmodule{diagmat}
+\usephysicsmodule{xmat}
+\usephysicsmodule{nabla.legacy}
+\usephysicsmodule{op.legacy}
+\makeatletter
+%\newcommand\vb[1]{\@ifstar\boldsymbol\mathbf{#1}}
+\newcommand\vb[1]{\@ifstar\boldsymbol\mathbf{#1}}
+\newcommand\va[1]{\@ifstar{\vec{#1}}{\vec{\mathrm{#1}}}}
+\newcommand\vu[1]{%
+	\@ifstar{\hat{\boldsymbol{#1}}}{\hat{\boldsymbol{#1}}}}
+\makeatother
+\usepackage{fixdif, derivative}  % pochodne
+\usepackage[version=4]{mhchem}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+\title{Wytwarzanie perowskitów}
+\author{Jędrzej Górny, Jan Kurek, Rafał Staroszczyk}
+\date{}
+
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+\newcommand{\inv}[1]{\frac{1}{#1}}
+
+\begin{document}
+	\maketitle
+	\section{Materiały perowskitowe}
+	Oryginalnym perowskitem był tytanian wapnia \ce{CaTiO3}. Nazwę tą rozwinięto do szerszej grupy związków o wzorze ogólnym \ce{ABX3}. Możliwych jest kilka konfiguracji ze względu na wartościowości pierwiastków, ale w fotowoltaice najważniejsze jest podgrupa o wzorze ogólnym \ce{A^{+}B^{2+}X^{-}3}. Typowymi jonami są dla \ce{A^{+}}: \ce{MA^{+}}, \ce{FA^{+}}, \ce{EA^{+}}, \ce{Cs^{+}} i \ce{Rb^{+}}; dla \ce{B^{2+}} dominującym jest \ce{Pb^{2+}}; dla {\ce{X^{-}}: \ce{I^{-}}, \ce{Br^{-}} i \ce{Cl^{-}}. Podczas zajęć wykonano ogniwa na bazie perowskitu \ce{Cs_{x}FA_{1-(x+y)}MA_{y}PbBr_{x}I_{3-x}}}.
+	\section{Budowa ogniwa perowskitowego}
+	\section{Wytwarzanie ogniwa perowskitowego}
+	\section{Charakterystyka perowskitu}
+\end{document}
