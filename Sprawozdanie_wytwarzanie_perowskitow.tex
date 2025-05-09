@@ -1,10 +1,11 @@
-\documentclass{article}
+\documentclass[a4, 12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage[margin=2.5cm]{geometry}
 \usepackage[polish]{babel}
 \usepackage{csquotes}
-%\usepackage[sorting=none,giveninits=true]{biblatex}
-%\addbibresource{bibliography.bib}
+\usepackage[sorting=none,giveninits=true]{biblatex}
+\addbibresource{bibliography.bib}
 \usepackage{float}
 \usepackage{graphicx}
 \graphicspath{{./}}
@@ -56,12 +57,161 @@
 \setlength{\belowdisplayshortskip}{0pt}
 
 \newcommand{\inv}[1]{\frac{1}{#1}}
+\DeclareSIUnit{\rpm}{RPM}
+\renewcommand{\thesubfigure}{\Alph{subfigure}}
 
 \begin{document}
 	\maketitle
 	\section{Materiały perowskitowe}
-	Oryginalnym perowskitem był tytanian wapnia \ce{CaTiO3}. Nazwę tą rozwinięto do szerszej grupy związków o wzorze ogólnym \ce{ABX3}. Możliwych jest kilka konfiguracji ze względu na wartościowości pierwiastków, ale w fotowoltaice najważniejsze jest podgrupa o wzorze ogólnym \ce{A^{+}B^{2+}X^{-}3}. Typowymi jonami są dla \ce{A^{+}}: \ce{MA^{+}}, \ce{FA^{+}}, \ce{EA^{+}}, \ce{Cs^{+}} i \ce{Rb^{+}}; dla \ce{B^{2+}} dominującym jest \ce{Pb^{2+}}; dla {\ce{X^{-}}: \ce{I^{-}}, \ce{Br^{-}} i \ce{Cl^{-}}. Podczas zajęć wykonano ogniwa na bazie perowskitu \ce{Cs_{x}FA_{1-(x+y)}MA_{y}PbBr_{x}I_{3-x}}}.
+	\sloppy
+	Oryginalnym perowskitem był tytanian wapnia \ce{CaTiO3}. Nazwę tą rozwinięto do szerszej grupy związków o wzorze ogólnym \ce{ABX3}. Możliwych jest kilka konfiguracji ze względu na wartościowości pierwiastków, ale w fotowoltaice najważniejsze jest podgrupa o wzorze ogólnym \ce{A^{+}B^{2+}X^{-}3}. Typowymi jonami są dla \ce{A^{+}}: \ce{MA^{+}}, \ce{FA^{+}}, \ce{EA^{+}}, \ce{Cs^{+}} i \ce{Rb^{+}}; dla \ce{B^{2+}} dominującym jest \ce{Pb^{2+}}; dla \ce{X^{-}}: \ce{I^{-}}, \ce{Br^{-}} i \ce{Cl^{-}}. Podczas zajęć wykonano ogniwa na bazie perowskitu \linebreak \ce{Cs_{x}FA_{1-(x+y)}MA_{y}PbBr_{x}I_{3-x}}.
+	
 	\section{Budowa ogniwa perowskitowego}
+	Ogniwa perowskitowe budowane są zwykle w dwóch strukturach: regularnej i odwróconej. Struktura regularna złożona jest kolejno z katody, warstwy transportującej elektrony, warstwy aktywnej, warstwy transportującej dziury i przezroczystej anody. Struktura odwrócona zamienia właściwościami katodę i anodę, więc katoda jest przezroczysta a anoda - nie. Struktura regularna cechuje się większą wydajnością a struktura odwrócona wykazuje większą stabilność \cite{wyklad_9}. Na rysunku \ref{fig:struktura_regularna} przedstawiono schemat struktury regularnej a na rysunku \ref{fig:struktura_odwrocona} przedstawiono schemat struktury odwróconej. Każda ze struktur narzuca również inne ograniczenia, ponieważ warstwa transportująca po stronie oświetlanej musi być przezroczysta, aby padające światło było głównie absorbowane w warstwie perowskitowej. W wytwarzanych tu perowskitach wykorzystywany jest \ce{PCBM} jako warstwa transportująca elektrony (ETL), który jest czarny, więc wymusza to stosowanie struktury odwróconej. Innym ograniczeniem jest rozpuszczalność różnych substancji w różnych rozpuszczalnikach; należy tak dostosować kolejne rozpuszczlniki, aby nie uszkadzały one nałożonych poprzednio warstw. 
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{"regularna".png}
+			\phantomcaption{\label{fig:struktura_regularna}}
+		\end{subfigure}
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{"odwrocona".png}
+			\phantomcaption{\label{fig:struktura_odwrocona}}
+		\end{subfigure}
+		\captionsetup{subrefformat=parens}
+		\caption{Struktury ogniwa: \subref{fig:struktura_regularna} regularna i \subref{fig:struktura_odwrocona} odwrócona.}
+	\end{figure}
+	
+	
+	%W laboratorium wytworzono 15 ogniw perowskitowych w konfiguracji struktury regularnej. Proces zaczynano od srebrnej katody przygotowanej poprzez napylanie; Warstwa ETL była wykonana z PCBM i BCP (gdzie BCP służyło do zmienienia pracy wyjścia ETL) używając statycznej metody "spin-coating". Warstwy perowskitu i HTL były nałożone w podobny sposób, gdzie skład HTL był różny w zależności od numeru próbki: 
+	%\begin{itemize}
+	%	\item \numrange{1}{5} \;\textemdash\; \ce{MeO-2PACz + CuNiO_x}, 
+	%	\item \numrange{6}{10} \;\textemdash\; \ce{MeO-2PACz}, 
+	%	\item \numrange{11}{15} \;\textemdash\; \ce{PTAA}.
+	%\end{itemize}
+	%Ostatnia warstwa - przezroczysta anoda - była wykonana ze szkła z ITO (ang. indium tin oxide) napylonym z jednej strony.
+	%Wspomniana metoda statycznego "spin-coating"-u jest następującym procesem: na podłoże (tu: próbkę) nakrapia się roztwór substancji tworzącej kolejną warstwę, po czym całość rozkręcana jest do \qty{3000}{\rpm}. Podczas wirowania, siła odśrodkowa rozprowadza kroplę \qty{100}{\micro\litre} roztworu po powierzchni podłoża, tworząc jednolitą nową warstwę. Po upływie \qty{50}{\s}, próbka jest zatrzymana i zostaje poddana wygrzewaniu w \qty{100}{\degreeCelsius} przez \qty{10}{\min}. 
+	%
+	%
+	%Zmiana parametrów takich jak prędkość obrotu, stężenie roztworu i inne wpływają na grubość i jednorodność warstwy. 
+	
 	\section{Wytwarzanie ogniwa perowskitowego}
+	Przed rozpoczęciem laboratium przygotowano odpowienio szkiełka wycinając je z większego kawałka i czyszcząc. Następnie nałożono na nie różne warstwy transportujące dziury (HTL) według:
+	\begin{itemize}
+		\item \numrange{1}{5} \;\textemdash\; \ce{MeO-2PACz + CuNiO_x}, 
+		\item \numrange{6}{10} \;\textemdash\; \ce{MeO-2PACz}, 
+		\item \numrange{11}{15} \;\textemdash\; \ce{PTAA}.
+	\end{itemize}
+	Na rysunku \ref{fig:nakladanie_meo2pacz} przedstawiono proces nakładania \ce{MeO-2PACz} na jedną z próbek. Przeprowadzono je statycznie w spincoaterze, to jest bez początkowego obrotu, a następnie rozpędzono do prędkości obrotowej \qty{3000}{\rpm} przez \qty{50}{\s}. Próba została przeniesiona na hot plate o temperaturze \qty{100}{\degreeCelsius} na \qty{10}{\min}.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{"meo2pacz".png}
+			\caption{\label{fig:nakladanie_meo2pacz}}
+		\end{subfigure}
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{"nakladanie_perowskitu".png}
+			\caption{\label{fig:nakladanie_perowskitu}}
+		\end{subfigure}
+		\captionsetup{subrefformat=parens}
+		\caption{Nakładanie warstw spincoaterem: \subref{fig:nakladanie_meo2pacz} \ce{MeO-2PACz}; \subref{fig:nakladanie_perowskitu} perowskitu (pierwszy krok)}
+	\end{figure}
+	Następny w kolejności perowskit został nałożony w wieloetapowo: najpierw nałożono spincoaterem \ce{PbI2}, \ce{FAI}, \ce{CsBr} oraz \ce{MAI} (rys. \ref{fig:nakladanie_perowskitu}), a dopiero na końcu dodano rozpuszczalnik, aby powiązać składniki w jedną warstwę, którą wygrzano w celu usunięcia rozpuszczalnika i wykrystalizowania perowskitu (rys. \ref{fig:perowskit}). 
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{"perowskit".png}
+		\caption{Próbka z warstwą perowskitu}
+		\label{fig:perowskit}
+	\end{figure}
+	Warstwa ETL jest dwuskładnikowa. Pierwszą warstwą jest \ce{PCBM}, który jest głównym transporterem elektronów, a drugą \textemdash \ce{BCP}, która jest cienka i jej rolą jest modyfikacja pracy wyjścia. Podczas laboratorium wykonano jedynie tą pierwszą. Nałożona została ona statycznie (rys. \ref{fig:pcbm}), a następnie spincoater rozpędzono do \qty{1000}{\rpm} przez \qty{60}{\s}, a po zakończeniu wygrzano na hot plate'ie. 
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\textwidth]{"pcbm".png}
+		\caption{Nakładanie statyczne \ce{PCBM}}
+		\label{fig:pcbm}
+	\end{figure}
+	
+	Druga elektroda została nałożona poprzez naparowywanie próżniowe srebrem wydzielając przy tym 4 ogniwa, w celu zwiększenia zarówno ilości dostępnych do badania próbek jak i jednorodności ogniwa na każdej z mniejszych powierzchni ogniw. Całość została zakapsułkowana w szkle. 
+	
 	\section{Charakterystyka perowskitu}
+	Ogniwo perowskitowe umieszczono na uchwycie w pewnej stałej odległości od lampy. Jego wyjścia podłączono równolegle do woltomierza i układu szeregowego amperomierza i rezystora nastawnego. Poprzez zmianę oporu zmieniano badany punkt krzywej charakterystyki prądowo-napięciowej (rys. \ref{fig:perov_i}). Z otrzymanych dancyh policzono zależność mocy ogniwa od jego napięcia (rys. \ref{fig:perov_p}) i postawowe parametry ogniwa (tab. \ref{tab:parametry}). 
+	
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{
+				S[table-column-width=1.5cm]
+				S[table-column-width=1.5cm]
+				S[table-column-width=1.5cm]
+				S[table-column-width=1.5cm]
+				S[table-column-width=1.5cm]
+				S[table-column-width=1.5cm]}
+			\toprule
+			{\makecell{$U_{OC}$ \\ $\bab{\unit{\mV}}$}} & 
+			{\makecell{$I_{SC}$ \\ $\bab{\unit{\uA}}$}} & 
+			{\makecell{$U_{MPP}$ \\ $\bab{\unit{\mV}}$}} & 
+			{\makecell{$I_{MPP}$ \\ $\bab{\unit{\uA}}$}} & 
+			{\makecell{FF \\ $\bab{\unit{\percent}}$}} & 
+			{\makecell{$P_{MPP}$ \\ $\bab{\unit{\uW}}$}} \\
+			\midrule
+			%Uoc     Isc     Umpp    Impp    FF   Pmpp
+			1053.5 & 560.0 & 839.8 & 490.2 & 70 & 411.7 \\
+			\bottomrule
+		\end{tabular}
+		\caption{Parametry ogniwa}
+		\label{tab:parametry}
+	\end{table}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[scale only axis,
+				width=0.8\textwidth,
+				xlabel=$U\;\bab{\unit{\mV}}$,
+				ylabel=$I\;\bab{\unit{\uA}}$,
+				grid=both,
+				xmin=0,
+				xmax=1200,
+				ymin=0,
+				ymax=600,
+				xtick distance=200,
+				ytick distance=100,
+				minor tick num=4,
+				legend pos=south west]
+				\addplot [color=red  , smooth, mark=*, mark size=1.5pt] table [x=UmV, y=IuA] {perov_sorted.txt};
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Zależność prądu od napięcia}
+		\label{fig:perov_i}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[scale only axis,
+				width=0.8\textwidth,
+				xlabel=$U\;\bab{\unit{\mV}}$,
+				ylabel=$P\;\bab{\unit{\uW}}$,
+				grid=both,
+				xmin=0,
+				xmax=1200,
+				ymin=0,
+				ymax=500,
+				xtick distance=200,
+				ytick distance=100,
+				minor tick num=4,
+				legend pos=south west]
+				\addplot [color=red  , smooth, mark=*, mark size=1.5pt] table [x=UmV, y=PuW] {perov_sorted.txt};
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Zależność mocy od napięcia}
+		\label{fig:perov_p}
+	\end{figure}
+	
+	\printbibliography
 \end{document}
